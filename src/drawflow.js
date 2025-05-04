@@ -1224,7 +1224,11 @@ export default class Drawflow {
     const content = document.createElement('div');
     content.classList.add("drawflow_content_node");
     if(typenode === false) {
-      content.innerHTML = html;
+      if (html instanceof HTMLElement) {
+        content.appendChild(html);
+      } else {
+        content.innerHTML = html;
+      }
     } else if (typenode === true) {
       content.appendChild(this.noderegister[html].html.cloneNode(true));
     } else {
